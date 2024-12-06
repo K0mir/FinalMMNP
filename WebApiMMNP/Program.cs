@@ -1,4 +1,5 @@
 using FinalData.Data;
+using FinalData;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
