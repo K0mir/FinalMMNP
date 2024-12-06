@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using FinalData.Data;
 using FinalData.Data.Entitys;
+using AutoMapper;
+using WebApiMMNP.Dtos;
 
 namespace WebApiMMNP.Controllers
 {
@@ -15,45 +17,66 @@ namespace WebApiMMNP.Controllers
     public class DeportesController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
+        private readonly IMapper _mapper;
 
-        public DeportesController(ApplicationDbContext context)
+
+        public DeportesController(ApplicationDbContext context, IMapper mapper)
         {
             _context = context;
+            this._mapper = mapper;
+
         }
 
         // GET: api/Deportes
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Deporte>>> GetDeportes()
+        public async Task<IList<DeporteDtos>> GetDeportes()
         {
-            return await _context.Deportes.ToListAsync();
+            var deportes = await _context.Deportes.ToListAsync();
+            var tipoDeportes = await _context.TipoDeportes.ToListAsync();
+            IList<DeporteDtos> Dtos = new List<DeporteDtos>();
+            foreach (var Entity in deportes)
+            {
+                var depTip = _mapper.Map<DeporteDtos>(Entity);
+                var tipoDeporte = tipoDeportes.Find(x => x.IdTipo == depTip.IdTipo);
+                depTip.NombreTipo = tipoDeporte.NombreTipo;
+                Dtos.Add(depTip);
+            }
+            return Dtos;
         }
 
         // GET: api/Deportes/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Deporte>> GetDeporte(int id)
+        public async Task<ActionResult<DeporteDtos>> GetDeporte(int id)
         {
-            var deporte = await _context.Deportes.FindAsync(id);
-
+            if (id == null)
+            {
+                return NotFound();
+            }
+            var deporte = await _context.Deportes
+                .FirstOrDefaultAsync(m => m.DeporteId == id);
             if (deporte == null)
             {
                 return NotFound();
             }
-
-            return deporte;
+            var Dtos = _mapper.Map<DeporteDtos>(deporte);
+            var tipoDeportes = await _context.TipoDeportes.ToListAsync();
+            var tipoDeporte = tipoDeportes.Find(x => x.IdTipo == Dtos.IdTipo);
+            Dtos.NombreTipo = tipoDeporte.NombreTipo;
+            return Dtos;
         }
 
         // PUT: api/Deportes/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutDeporte(int id, Deporte deporte)
+        public async Task<IActionResult> PutDeporte(int id, DeporteDtos deporteDtos)
         {
-            if (id != deporte.DeporteId)
+            if (id != deporteDtos.DeporteId)
             {
                 return BadRequest();
             }
-
+            var deporte = await _context.Deportes.FindAsync(id);
+            deporte = _mapper.Map<DeporteDtos, Deporte>(deporteDtos, deporte);
             _context.Entry(deporte).State = EntityState.Modified;
-
             try
             {
                 await _context.SaveChangesAsync();
@@ -69,19 +92,18 @@ namespace WebApiMMNP.Controllers
                     throw;
                 }
             }
-
             return NoContent();
         }
 
         // POST: api/Deportes
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Deporte>> PostDeporte(Deporte deporte)
+        public async Task<ActionResult<Deporte>> PostDeporte(DeporteDtos deporteDtos)
         {
+            var deporte = _mapper.Map<Deporte>(deporteDtos);
             _context.Deportes.Add(deporte);
             await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetDeporte", new { id = deporte.DeporteId }, deporte);
+            return CreatedAtAction("GetDeportes", new { id = deporte.DeporteId }, deporte);
         }
 
         // DELETE: api/Deportes/5
