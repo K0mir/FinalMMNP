@@ -31,6 +31,7 @@ namespace FinalMMNP.Areas.Identity.Pages.Account.Manage
         ///     directly from your code. This API may change or be removed in future releases.
         /// </summary>
         public string Username { get; set; }
+        public string deportePrac { get; set; }
 
         /// <summary>
         ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
@@ -65,7 +66,9 @@ namespace FinalMMNP.Areas.Identity.Pages.Account.Manage
         {
             var userName = await _userManager.GetUserNameAsync(user);
             var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
+            var deporte = user.DeportePrac;
 
+            deportePrac = deporte;
             Username = userName;
 
             Input = new InputModel

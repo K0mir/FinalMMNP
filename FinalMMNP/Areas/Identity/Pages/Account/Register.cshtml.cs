@@ -98,6 +98,9 @@ namespace FinalMMNP.Areas.Identity.Pages.Account
             [Display(Name = "Confirm password")]
             [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
             public string ConfirmPassword { get; set; }
+
+            [Display(Name = "deportePrac")]
+            public string deportePrac { get; set; }
         }
 
 
@@ -134,7 +137,8 @@ namespace FinalMMNP.Areas.Identity.Pages.Account
 
                     await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
                         $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
-
+                    user.DeportePrac = Input.deportePrac;
+                    await _userManager.UpdateAsync(user);
                     if (_userManager.Options.SignIn.RequireConfirmedAccount)
                     {
                         return RedirectToPage("RegisterConfirmation", new { email = Input.Email, returnUrl = returnUrl });

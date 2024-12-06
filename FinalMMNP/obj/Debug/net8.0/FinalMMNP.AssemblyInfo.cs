@@ -16,7 +16,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("FinalMMNP")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+138b37485831b3d4e188d558e5b875541e08abe6")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c967eede602fcb0d588434f605d03af82f31a00a")]
 [assembly: System.Reflection.AssemblyProductAttribute("FinalMMNP")]
 [assembly: System.Reflection.AssemblyTitleAttribute("FinalMMNP")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
