@@ -65,6 +65,26 @@ namespace WebApiMMNP.Controllers
             return Dtos;
         }
 
+        [HttpGet("{id}")]
+        public async Task<ActionResult<DeporteDtos>> GetDeporteByIdTipo(int id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+            var deporte = await _context.Deportes
+                .FirstOrDefaultAsync(m => m.IdTipo == id);
+            if (deporte == null)
+            {
+                return NotFound();
+            }
+            var Dtos = _mapper.Map<DeporteDtos>(deporte);
+            var tipoDeportes = await _context.TipoDeportes.ToListAsync();
+            var tipoDeporte = tipoDeportes.Find(x => x.IdTipo == id);
+            Dtos.NombreTipo = tipoDeporte.NombreTipo;
+            return Dtos;
+        }
+
         // PUT: api/Deportes/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
