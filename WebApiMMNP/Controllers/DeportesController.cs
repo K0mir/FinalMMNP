@@ -65,7 +65,7 @@ namespace WebApiMMNP.Controllers
             return Dtos;
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("Tipo:{id}")]
         public async Task<ActionResult<DeporteDtos>> GetDeporteByIdTipo(int id)
         {
             if (id == null)

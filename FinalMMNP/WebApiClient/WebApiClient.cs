@@ -106,6 +106,12 @@ namespace TMx2.WebApiClients
 
             return GetData<T>(address);
         }
+        public CoorporateApiResult<T> GetDeporteByIdTipo<T>(int id)
+        {
+            string address = $"api/Deporte/Tipo:{id}";
+
+            return GetData<T>(address);
+        }
         public CoorporateApiResult<TU> UpdateDeporteById<T, TU>(int id, T model)
         {
             string address = $"api/Deporte/{id}";
