@@ -1,0 +1,6 @@
+@WebApiMMNP_HostAddress = http://localhost:5139
+
+GET {{WebApiMMNP_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
