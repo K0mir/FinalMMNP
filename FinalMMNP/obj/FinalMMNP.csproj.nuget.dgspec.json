@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Estudiante\\Source\\Repos\\FinalMMNP\\FinalMMNP\\FinalMMNP.csproj": {}
+    "C:\\Users\\Estudiante\\Source\\Repos\\FinalMMNP1\\FinalMMNP\\FinalMMNP.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Estudiante\\Source\\Repos\\FinalMMNP\\FinalData\\FinalData.csproj": {
+    "C:\\Users\\Estudiante\\Source\\Repos\\FinalMMNP1\\FinalData\\FinalData.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Estudiante\\Source\\Repos\\FinalMMNP\\FinalData\\FinalData.csproj",
+        "projectUniqueName": "C:\\Users\\Estudiante\\Source\\Repos\\FinalMMNP1\\FinalData\\FinalData.csproj",
         "projectName": "FinalData",
-        "projectPath": "C:\\Users\\Estudiante\\Source\\Repos\\FinalMMNP\\FinalData\\FinalData.csproj",
+        "projectPath": "C:\\Users\\Estudiante\\Source\\Repos\\FinalMMNP1\\FinalData\\FinalData.csproj",
         "packagesPath": "C:\\Users\\Estudiante\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Estudiante\\Source\\Repos\\FinalMMNP\\FinalData\\obj\\",
+        "outputPath": "C:\\Users\\Estudiante\\Source\\Repos\\FinalMMNP1\\FinalData\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -93,14 +93,14 @@
         }
       }
     },
-    "C:\\Users\\Estudiante\\Source\\Repos\\FinalMMNP\\FinalMMNP\\FinalMMNP.csproj": {
+    "C:\\Users\\Estudiante\\Source\\Repos\\FinalMMNP1\\FinalMMNP\\FinalMMNP.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Estudiante\\Source\\Repos\\FinalMMNP\\FinalMMNP\\FinalMMNP.csproj",
+        "projectUniqueName": "C:\\Users\\Estudiante\\Source\\Repos\\FinalMMNP1\\FinalMMNP\\FinalMMNP.csproj",
         "projectName": "FinalMMNP",
-        "projectPath": "C:\\Users\\Estudiante\\Source\\Repos\\FinalMMNP\\FinalMMNP\\FinalMMNP.csproj",
+        "projectPath": "C:\\Users\\Estudiante\\Source\\Repos\\FinalMMNP1\\FinalMMNP\\FinalMMNP.csproj",
         "packagesPath": "C:\\Users\\Estudiante\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Estudiante\\Source\\Repos\\FinalMMNP\\FinalMMNP\\obj\\",
+        "outputPath": "C:\\Users\\Estudiante\\Source\\Repos\\FinalMMNP1\\FinalMMNP\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -122,11 +122,11 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\Estudiante\\Source\\Repos\\FinalMMNP\\FinalData\\FinalData.csproj": {
-                "projectPath": "C:\\Users\\Estudiante\\Source\\Repos\\FinalMMNP\\FinalData\\FinalData.csproj"
+              "C:\\Users\\Estudiante\\Source\\Repos\\FinalMMNP1\\FinalData\\FinalData.csproj": {
+                "projectPath": "C:\\Users\\Estudiante\\Source\\Repos\\FinalMMNP1\\FinalData\\FinalData.csproj"
               },
-              "C:\\Users\\Estudiante\\Source\\Repos\\FinalMMNP\\WebApiMMNP\\WebApiMMNP.csproj": {
-                "projectPath": "C:\\Users\\Estudiante\\Source\\Repos\\FinalMMNP\\WebApiMMNP\\WebApiMMNP.csproj"
+              "C:\\Users\\Estudiante\\Source\\Repos\\FinalMMNP1\\WebApiMMNP\\WebApiMMNP.csproj": {
+                "projectPath": "C:\\Users\\Estudiante\\Source\\Repos\\FinalMMNP1\\WebApiMMNP\\WebApiMMNP.csproj"
               }
             }
           }
@@ -204,14 +204,14 @@
         }
       }
     },
-    "C:\\Users\\Estudiante\\Source\\Repos\\FinalMMNP\\WebApiMMNP\\WebApiMMNP.csproj": {
+    "C:\\Users\\Estudiante\\Source\\Repos\\FinalMMNP1\\WebApiMMNP\\WebApiMMNP.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Estudiante\\Source\\Repos\\FinalMMNP\\WebApiMMNP\\WebApiMMNP.csproj",
+        "projectUniqueName": "C:\\Users\\Estudiante\\Source\\Repos\\FinalMMNP1\\WebApiMMNP\\WebApiMMNP.csproj",
         "projectName": "WebApiMMNP",
-        "projectPath": "C:\\Users\\Estudiante\\Source\\Repos\\FinalMMNP\\WebApiMMNP\\WebApiMMNP.csproj",
+        "projectPath": "C:\\Users\\Estudiante\\Source\\Repos\\FinalMMNP1\\WebApiMMNP\\WebApiMMNP.csproj",
         "packagesPath": "C:\\Users\\Estudiante\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Estudiante\\Source\\Repos\\FinalMMNP\\WebApiMMNP\\obj\\",
+        "outputPath": "C:\\Users\\Estudiante\\Source\\Repos\\FinalMMNP1\\WebApiMMNP\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -233,8 +233,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\Estudiante\\Source\\Repos\\FinalMMNP\\FinalData\\FinalData.csproj": {
-                "projectPath": "C:\\Users\\Estudiante\\Source\\Repos\\FinalMMNP\\FinalData\\FinalData.csproj"
+              "C:\\Users\\Estudiante\\Source\\Repos\\FinalMMNP1\\FinalData\\FinalData.csproj": {
+                "projectPath": "C:\\Users\\Estudiante\\Source\\Repos\\FinalMMNP1\\FinalData\\FinalData.csproj"
               }
             }
           }
