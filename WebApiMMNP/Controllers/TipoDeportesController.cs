@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using FinalData.Data;
 using FinalData.Data.Entitys;
+using AutoMapper;
+using WebApiMMNP.Dtos;
 
 namespace WebApiMMNP.Controllers
 {
@@ -15,45 +17,59 @@ namespace WebApiMMNP.Controllers
     public class TipoDeportesController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
+        private readonly IMapper _mapper;
 
-        public TipoDeportesController(ApplicationDbContext context)
+        public TipoDeportesController(ApplicationDbContext context,
+            IMapper mapper)
         {
             _context = context;
+            this._mapper = mapper;
         }
 
         // GET: api/TipoDeportes
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<TipoDeporte>>> GetTipoDeportes()
+        public async Task<IList<TipoDeporteDtos>> GetTipoDeportes()
         {
-            return await _context.TipoDeportes.ToListAsync();
+            var tipoDeporte = await _context.TipoDeportes.ToListAsync();
+            IList<TipoDeporteDtos> Dtos = new List<TipoDeporteDtos>();
+            foreach (var Entity in tipoDeporte)
+            {
+                var dep = _mapper.Map<TipoDeporteDtos>(Entity);
+                Dtos.Add(dep);
+            }
+            return Dtos;
         }
 
         // GET: api/TipoDeportes/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<TipoDeporte>> GetTipoDeporte(int id)
+        public async Task<ActionResult<TipoDeporteDtos>> GetTipoDeporte(int id)
         {
-            var tipoDeporte = await _context.TipoDeportes.FindAsync(id);
-
+            if (id == null)
+            {
+                return NotFound();
+            }
+            var tipoDeporte = await _context.TipoDeportes
+                .FirstOrDefaultAsync(m => m.IdTipo == id);
             if (tipoDeporte == null)
             {
                 return NotFound();
             }
-
-            return tipoDeporte;
+            var Dtos = _mapper.Map<TipoDeporteDtos>(tipoDeporte);
+            return Dtos;
         }
 
         // PUT: api/TipoDeportes/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutTipoDeporte(int id, TipoDeporte tipoDeporte)
+        public async Task<IActionResult> PutTipoDeporte(int id, TipoDeporteDtos tipoDeporteDtos)
         {
-            if (id != tipoDeporte.IdTipo)
+            if (id != tipoDeporteDtos.IdTipo)
             {
                 return BadRequest();
             }
-
-            _context.Entry(tipoDeporte).State = EntityState.Modified;
-
+            var tipodeporte = await _context.TipoDeportes.FindAsync(id);
+            tipodeporte = _mapper.Map<TipoDeporteDtos, TipoDeporte>(tipoDeporteDtos, tipodeporte);
+            _context.Entry(tipodeporte).State = EntityState.Modified;
             try
             {
                 await _context.SaveChangesAsync();
@@ -69,19 +85,18 @@ namespace WebApiMMNP.Controllers
                     throw;
                 }
             }
-
             return NoContent();
         }
 
         // POST: api/TipoDeportes
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<TipoDeporte>> PostTipoDeporte(TipoDeporte tipoDeporte)
+        public async Task<ActionResult<TipoDeporte>> PostTipoDeporte(TipoDeporteDtos tipoDeporteDtos)
         {
-            _context.TipoDeportes.Add(tipoDeporte);
+            var tipodeporte = _mapper.Map<TipoDeporteDtos, TipoDeporte>(tipoDeporteDtos);
+            _context.TipoDeportes.Add(tipodeporte);
             await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetTipoDeporte", new { id = tipoDeporte.IdTipo }, tipoDeporte);
+            return CreatedAtAction("GetTipoDeporte", new { id = tipodeporte.IdTipo }, tipodeporte);
         }
 
         // DELETE: api/TipoDeportes/5
