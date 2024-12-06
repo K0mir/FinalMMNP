@@ -295,3 +295,4 @@ C:\Users\Estudiante\Source\Repos\FinalMMNP\FinalMMNP\obj\Debug\net8.0\ref\FinalM
 C:\Users\Estudiante\Source\Repos\FinalMMNP\FinalMMNP\bin\Debug\net8.0\FinalData.dll
 C:\Users\Estudiante\Source\Repos\FinalMMNP\FinalMMNP\bin\Debug\net8.0\FinalData.pdb
 C:\Users\Estudiante\source\repos\FinalMMNP\FinalMMNP\obj\Debug\net8.0\FinalMMNP.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\Estudiante\source\repos\FinalMMNP\FinalMMNP\obj\Debug\net8.0\scopedcss\Views\Shared\_LayoutAdmin.cshtml.rz.scp.css
