@@ -23,6 +23,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\FinalData\FinalData.csproj" />
+    <ProjectReference Include="..\WebApiMMNP\WebApiMMNP.csproj" />
   </ItemGroup>
 
 </Project>

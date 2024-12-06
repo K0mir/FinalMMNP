@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("WebApiMMNP")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7b7120bbf8222ad6a2a43e28c8fc3afe3e532f49")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e6932346a831d5de138f80aeca1d4557baae009e")]
 [assembly: System.Reflection.AssemblyProductAttribute("WebApiMMNP")]
 [assembly: System.Reflection.AssemblyTitleAttribute("WebApiMMNP")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

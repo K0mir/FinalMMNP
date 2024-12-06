@@ -17,7 +17,7 @@ using ICG.Corporate.Website.ApiClients.Model;
 using System.Collections.Specialized;
 using FinalMMNP.ViewModels;
 
-namespace TMx2.WebApiClients
+namespace FinalMMNP.WebApiClients
 {
     /// <summary>
     /// The Corporate Api Client
