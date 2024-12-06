@@ -3077,6 +3077,22 @@
             "rid": "win"
           }
         }
+      },
+      "FinalData/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "dependencies": {
+          "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore": "8.0.8",
+          "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "8.0.8",
+          "Microsoft.EntityFrameworkCore": "8.0.8",
+          "Microsoft.EntityFrameworkCore.SqlServer": "8.0.8"
+        },
+        "compile": {
+          "bin/placeholder/FinalData.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/FinalData.dll": {}
+        }
       }
     }
   },
@@ -8375,11 +8391,17 @@
         "system.windows.extensions.nuspec",
         "useSharedDesignerContext.txt"
       ]
+    },
+    "FinalData/1.0.0": {
+      "type": "project",
+      "path": "../FinalData/FinalData.csproj",
+      "msbuildProject": "../FinalData/FinalData.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net8.0": [
       "AutoMapper >= 13.0.1",
+      "FinalData >= 1.0.0",
       "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore >= 8.0.8",
       "Microsoft.AspNetCore.Identity.EntityFrameworkCore >= 8.0.11",
       "Microsoft.AspNetCore.Identity.UI >= 8.0.11",
@@ -8396,11 +8418,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Estudiante\\source\\repos\\FinalMMNP\\FinalMMNP\\FinalMMNP.csproj",
+      "projectUniqueName": "C:\\Users\\Estudiante\\Source\\Repos\\FinalMMNP\\FinalMMNP\\FinalMMNP.csproj",
       "projectName": "FinalMMNP",
-      "projectPath": "C:\\Users\\Estudiante\\source\\repos\\FinalMMNP\\FinalMMNP\\FinalMMNP.csproj",
+      "projectPath": "C:\\Users\\Estudiante\\Source\\Repos\\FinalMMNP\\FinalMMNP\\FinalMMNP.csproj",
       "packagesPath": "C:\\Users\\Estudiante\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Estudiante\\source\\repos\\FinalMMNP\\FinalMMNP\\obj\\",
+      "outputPath": "C:\\Users\\Estudiante\\Source\\Repos\\FinalMMNP\\FinalMMNP\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -8421,7 +8443,11 @@
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\Estudiante\\Source\\Repos\\FinalMMNP\\FinalData\\FinalData.csproj": {
+              "projectPath": "C:\\Users\\Estudiante\\Source\\Repos\\FinalMMNP\\FinalData\\FinalData.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

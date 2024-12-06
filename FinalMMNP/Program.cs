@@ -1,4 +1,4 @@
-using FinalMMNP.Data;
+using FinalData.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 

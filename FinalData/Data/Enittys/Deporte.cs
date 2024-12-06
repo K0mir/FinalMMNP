@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
-namespace Final.Data.Data.Entitys
+namespace FinalData.Data.Entitys
 {
     [Table("Deporte")]
     public class Deporte
