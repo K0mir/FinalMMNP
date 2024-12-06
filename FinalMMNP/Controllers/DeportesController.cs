@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using FinalData.Data;
 using FinalData.Data.Entitys;
+using FinalMMNP.WebApiClients;
+using FinalMMNP.ViewModels;
 
 namespace FinalMMNP.Controllers
 {
@@ -22,27 +24,32 @@ namespace FinalMMNP.Controllers
         // GET: Deportes
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Deportes.Include(d => d.TipoDeporte);
-            return View(await applicationDbContext.ToListAsync());
+
+            WebApiClients.WebApiClient webApiClient = new WebApiClients.WebApiClient();
+            var wrapper = webApiClient.GetDeportes<List<DeporteViewModel>>();
+            for (int i = 0; i < wrapper.Data.Count; i++)
+            {
+                var tipoDeporte = webApiClient.GetTipoDeporteById<TipoDeporteViewModel>(wrapper.Data[i].IdTipo);
+                wrapper.Data[i].NombreTipo = tipoDeporte.Data.NombreTipo;
+            }
+            return View(wrapper.Data);
         }
 
         // GET: Deportes/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null)
+            if (id != null)
             {
-                return NotFound();
+                WebApiClients.WebApiClient webApiClient = new WebApiClients.WebApiClient();
+                var wrapper = webApiClient.GetDeporteById<DeporteViewModel>(id.Value);
+                if (wrapper.Data != null)
+                {
+                    var categoria = webApiClient.GetTipoDeporteById<TipoDeporteViewModel>(wrapper.Data.IdTipo);
+                    wrapper.Data.NombreTipo = categoria.Data.NombreTipo;
+                    return View(wrapper.Data);
+                }
             }
-
-            var deporte = await _context.Deportes
-                .Include(d => d.TipoDeporte)
-                .FirstOrDefaultAsync(m => m.DeporteId == id);
-            if (deporte == null)
-            {
-                return NotFound();
-            }
-
-            return View(deporte);
+            return NotFound();
         }
 
         // GET: Deportes/Create
@@ -57,33 +64,32 @@ namespace FinalMMNP.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("DeporteId,Nombre,Descripcion,CantJugadores,FechaCracion,Popularidad,IdTipo")] Deporte deporte)
+        public async Task<IActionResult> Create([Bind("DeporteId,Nombre,Descripcion,CantJugadores,FechaCracion,Popularidad,IdTipo")] DeporteViewModel deporte)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(deporte);
-                await _context.SaveChangesAsync();
+                WebApiClients.WebApiClient webApiClient = new WebApiClients.WebApiClient();
+                var wrapper = webApiClient.CrearDeporte<DeporteViewModel>(deporte);
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["IdTipo"] = new SelectList(_context.TipoDeportes, "IdTipo", "Descripcion", deporte.IdTipo);
+            //ViewData["IdTipo"] = new SelectList(_context.TipoDeportes, "IdTipo", "Descripcion", deporte.IdTipo);
             return View(deporte);
         }
 
         // GET: Deportes/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null)
+            if (id != null)
             {
-                return NotFound();
+                WebApiClients.WebApiClient webApiClient = new WebApiClients.WebApiClient();
+                var wrapper = webApiClient.GetDeporteById<DeporteViewModel>(id.Value);
+                if (wrapper.Data != null)
+                {
+                    ViewData["IdTipo"] = new SelectList(_context.TipoDeportes, "IdTipo", "Descripcion", wrapper.Data.IdTipo);
+                    return View(wrapper.Data);
+                }
             }
-
-            var deporte = await _context.Deportes.FindAsync(id);
-            if (deporte == null)
-            {
-                return NotFound();
-            }
-            ViewData["IdTipo"] = new SelectList(_context.TipoDeportes, "IdTipo", "Descripcion", deporte.IdTipo);
-            return View(deporte);
+            return NotFound();
         }
 
         // POST: Deportes/Edit/5
@@ -91,33 +97,10 @@ namespace FinalMMNP.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("DeporteId,Nombre,Descripcion,CantJugadores,FechaCracion,Popularidad,IdTipo")] Deporte deporte)
+        public async Task<IActionResult> Edit(int id, [Bind("DeporteId,Nombre,Descripcion,CantJugadores,FechaCracion,Popularidad,IdTipo")] DeporteViewModel deporte)
         {
-            if (id != deporte.DeporteId)
-            {
-                return NotFound();
-            }
-
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Update(deporte);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!DeporteExists(deporte.DeporteId))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
-            }
+            WebApiClients.WebApiClient webApiClient = new WebApiClients.WebApiClient();
+            webApiClient.UpdateDeporteById<DeporteViewModel, DeporteViewModel>(id, deporte);
             ViewData["IdTipo"] = new SelectList(_context.TipoDeportes, "IdTipo", "Descripcion", deporte.IdTipo);
             return View(deporte);
         }
@@ -125,20 +108,18 @@ namespace FinalMMNP.Controllers
         // GET: Deportes/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null)
+            if (id != null)
             {
-                return NotFound();
+                WebApiClients.WebApiClient webApiClient = new WebApiClients.WebApiClient();
+                var wrapper = webApiClient.GetDeporteById<DeporteViewModel>(id.Value);
+                if (wrapper.Data != null)
+                {
+                    var categoria = webApiClient.GetTipoDeporteById<TipoDeporteViewModel>(wrapper.Data.IdTipo);
+                    wrapper.Data.NombreTipo = categoria.Data.NombreTipo;
+                    return View(wrapper.Data);
+                }
             }
-
-            var deporte = await _context.Deportes
-                .Include(d => d.TipoDeporte)
-                .FirstOrDefaultAsync(m => m.DeporteId == id);
-            if (deporte == null)
-            {
-                return NotFound();
-            }
-
-            return View(deporte);
+            return NotFound();
         }
 
         // POST: Deportes/Delete/5
@@ -146,13 +127,8 @@ namespace FinalMMNP.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var deporte = await _context.Deportes.FindAsync(id);
-            if (deporte != null)
-            {
-                _context.Deportes.Remove(deporte);
-            }
-
-            await _context.SaveChangesAsync();
+            WebApiClients.WebApiClient webApiClient = new WebApiClients.WebApiClient();
+            var wrapper = webApiClient.DeleteDeporteyId<DeporteViewModel>(id);
             return RedirectToAction(nameof(Index));
         }
 

@@ -118,7 +118,7 @@ namespace FinalMMNP.WebApiClients
 
             return PutData<T, TU>(model, address);
         }
-        public CoorporateApiResult<DeporteViewModel> CrearEnfermedad<DeporteViewModel>(DeporteViewModel modelDeporte)
+        public CoorporateApiResult<DeporteViewModel> CrearDeporte<DeporteViewModel>(DeporteViewModel modelDeporte)
         {
             string recurso = $"api/Deporte";
 
@@ -126,7 +126,7 @@ namespace FinalMMNP.WebApiClients
 
             return PostData<DeporteViewModel, DeporteViewModel>(address, modelDeporte);
         }
-        public CoorporateApiResult<bool> DeleteBDeporteyId<T>(int id)
+        public CoorporateApiResult<bool> DeleteDeporteyId<T>(int id)
         {
             string recurso = $"api/Deporte/{id}";
 
