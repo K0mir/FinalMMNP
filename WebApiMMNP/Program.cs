@@ -1,6 +1,7 @@
 using FinalData.Data;
 using FinalData;
 using Microsoft.EntityFrameworkCore;
+using WebApiMMNP.AutoMapperProfile;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,6 +14,9 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddAutoMapper(typeof(TipoDeporteProfile));
+builder.Services.AddAutoMapper(typeof(DeporteProfile));
 
 var app = builder.Build();
 
